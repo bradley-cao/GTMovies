@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth import login as auth_login, authenticate, logout as
-auth_logout
+from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from .forms import CustomUserCreationForm,  CustomErrorList
 # Create your views here.
 from django.contrib.auth.forms import UserCreationForm
@@ -23,8 +22,7 @@ def login(request):
         password = request.POST['password']
         )
         if user is None:
-            template_data['error'] =
-            'The username or password is incorrect.'
+            template_data['error'] = 'The username or password is incorrect.'
             return render(request, 'accounts/login.html',
             {'template_data': template_data})
         else:

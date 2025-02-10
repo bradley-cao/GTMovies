@@ -6,12 +6,10 @@ class CustomErrorList(ErrorList):
         if not self:
             return ''
         return mark_safe(''.join([
-            f'<div class="alert alert-danger" role="alert">
-            {e}</div>' for e in self]))
+            f'<div class="alert alert-danger" role="alert">{e}</div>' for e in self]))
 class CustomUserCreationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
-        super(CustomUserCreationForm, self).__init__
-            (*args, **kwargs)
+        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
         for fieldname in ['username', 'password1',
         'password2']:
             self.fields[fieldname].help_text = None
