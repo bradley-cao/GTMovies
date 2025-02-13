@@ -4,6 +4,7 @@ from .forms import CustomUserCreationForm,  CustomErrorList
 # Create your views here.
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 @login_required
 def logout(request):
     auth_logout(request)
