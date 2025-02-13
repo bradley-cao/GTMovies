@@ -1,7 +1,6 @@
-from django.contrib import admin,Review
-
+from django.contrib import admin
 # Register your models here.
-from .models import Movie
+from .models import Movie, Review
 
 class MovieAdmin(admin.ModelAdmin):
     ordering = ['name']
