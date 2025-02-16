@@ -50,9 +50,9 @@ def add(request, id):
     cart = request.session.get('cart', {})
     cart[id] = request.POST['quantity']
     request.session['cart'] = cart
-    return redirect('home.index') # replace with cart.index once template is created
+    return redirect('cart.index') # replace with cart.index once template is created, replaced
 
 def clear(request):
     request.session['cart'] = {}
-    return redirect('home.index') # replace with cart.index once template is created
+    return redirect('cart.index') # replace with cart.index once template is created, replaced
 
