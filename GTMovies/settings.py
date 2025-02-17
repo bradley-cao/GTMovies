@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'home.apps.MoviesConfig',
     "movies.apps.MoviesConfig",
+    "accounts.apps.AccountsConfig",
     "cart.apps.CartConfig"
 ]
 
