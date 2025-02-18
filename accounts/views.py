@@ -4,7 +4,24 @@ from .forms import CustomUserCreationForm,  CustomErrorList
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 # Create your views here.
+def reset_password(request):
+    template_data = {'title': 'Reset Password'}
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        new_password = request.POST.get('new_password')
+
+        try:
+            user = User.objects.get(username=username)
+            user.password = make_password(new_password)  # Securely hash the new password
+            user.save()
+            return redirect('accounts.login')  # Redirect to login after resetting
+        except User.DoesNotExist:
+            template_data['error'] = "User does not exist."
+
+    return render(request, 'accounts/resetpassword.html', {'template_data': template_data})
 @login_required
 def orders(request):
     template_data = {}
