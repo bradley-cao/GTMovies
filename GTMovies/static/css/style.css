@@ -2,16 +2,15 @@
     background: url("../img/backgroundcropped.jpeg") no-repeat
     fixed;
     background-size: 100% auto;
-    width: 100vw; /* Make sure the background scales with the viewport width */
-    height: 100vh; /* Keep height based on viewport height */
-    background-attachment: fixed; /* Ensure background stays in place during scroll */
+    /*width: 100vw; !* Make sure the background scales with the viewport width *!*/
+    /*height: 100vh; !* Keep height based on viewport height *!*/
+    /*background-attachment: fixed; !* Ensure background stays in place during scroll *!*/
 }
 
 body {
     margin: 0;
     overflow-x: hidden; /* Avoid horizontal scrolling */
 }
-
 
 .navbar a.nav-link {
     color: #FFFEF6 !important;
@@ -53,16 +52,33 @@ body {
     max-height: 400px;
 }
 
-.container {
-    width: 100%;
-    height: 100%;
-    max-width: 100vw;
-    max-height: 100vh;
-    aspect-ratio: 16 / 9; /* For example, you could lock a container's aspect ratio */
+.sticky-footer {
+    position: absolute;
+    bottom: 0;
 }
 
-@media (max-width: 3000px) {
-    .container {
-        aspect-ratio: 4 / 3; /* Adjust the ratio for mobile screens */
-    }
+#footer {
+    position:fixed;
+    bottom:0;
 }
+
+.flex-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/*.container {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    max-width: 100vw;*/
+/*    max-height: 100vh;*/
+/*    aspect-ratio: 16 / 9; !* For example, you could lock a container's aspect ratio *!*/
+/*}*/
+
+/*@media (max-width: 3000px) {*/
+/*    .container {*/
+/*        aspect-ratio: 4 / 3; !* Adjust the ratio for mobile screens *!*/
+/*    }*/
+/*}*/

@@ -1,9 +1,35 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from .forms import CustomUserCreationForm,  CustomErrorList
-# Create your views here.
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+# Create your views here.
+def reset_password(request):
+    template_data = {'title': 'Reset Password'}
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        new_password = request.POST.get('new_password')
+
+        try:
+            user = User.objects.get(username=username)
+            user.password = make_password(new_password)  # Securely hash the new password
+            user.save()
+            return redirect('accounts.login')  # Redirect to login after resetting
+        except User.DoesNotExist:
+            template_data['error'] = "User does not exist."
+
+    return render(request, 'accounts/resetpassword.html', {'template_data': template_data})
+@login_required
+def orders(request):
+    template_data = {}
+    template_data['title'] = 'Orders'
+    template_data['orders'] = request.user.order_set.all()
+    return render(request, 'accounts/orders.html',
+    {'template_data': template_data})
+
 @login_required
 def logout(request):
     auth_logout(request)
